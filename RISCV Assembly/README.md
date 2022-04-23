@@ -57,3 +57,51 @@ The argument that is passed into the function is located at the label `n`. You c
 ### Action
 
 Complete the code at the comment line `# YOUR CODE HERE` and make sure that your function properly returns, for example, `3! = 6`, `7! = 5040`, and `8! = 40320`.
+
+## Exercise 4: Call a RISC-V function with `map`
+
+This exercise uses the file `list_map.s`.
+
+In this exercise, you will complete the implementation of [map](https://en.wikipedia.org/wiki/Map_(higher-order_function)) on linked lists in RISC-V. The function will be simplified to mutate the list in-place, rather than creating and returning a new list with the modified values.
+
+You will find it helpful to refer to the [RISC-V-Reference](https://didatticaonline.unitn.it/dol/mod/resource/view.php?id=1050250) to complete this exercise. If you encounter any instructions or pseudo-instructions you are unfamiliar with, use this as a resource.
+
+Your `map` procedure will take two parameters. The first parameter will be **the address of the head node** of a singly linked list whose values are 32-bit integers. So, in C, the structure would be defined as:
+
+```c
+struct node {
+    int value;
+    struct node *next;
+};
+```
+
+The second parameter will be **the address of a function** that takes one `int` as an argument and returns an `int`. We'll use the `jalr` RISC-V instruction to call this function on the list node values (check yourself how `jalr` works).
+
+The `map` function will recursively go down the list, applying the function to each value of the list and storing the value returned in that corresponding node. In C, the function would be something like this:
+
+```c
+void map(struct node *head, int (*f)(int)) 
+{
+    if (!head) { return; }
+    head->value = f(head->value);
+    map(head->next,f);
+}
+```
+
+If you haven't seen the int `(*f)(int)` kind of declaration before, don't worry too much about it. Basically, it means that `f` is a pointer to a function that takes an `int` as an argument. We can call this function `f` just like any other.
+
+There are exactly ten (10) markers (1 in `done`, 7 in `map`, and 2 in `main`) in the provided code where it says `# YOUR CODE HERE`.
+
+### Action
+
+Complete the implementation of `map` by filling out each of these ten markers with the appropriate code. Furthermore, provide a call to `map` with `square` as the function argument. There are comments in the code that explain what should be accomplished at each marker. When you've filled in these instructions, running the code should provide you with the following output:
+
+```
+9 8 7 6 5 4 3 2 1 0 
+81 64 49 36 25 16 9 4 1 0 
+80 63 48 35 24 15 8 3 0 -1 
+```
+
+The first line is the original list, and the second line is the list with all elements squared after calling `map(head, &square)`, and the third is the list with all elements decremented after now calling `map(head, &decrement)`.
+
+Do not forger to check that your code satisfies the [RISC-V Calling Converntion](https://didatticaonline.unitn.it/dol/mod/resource/view.php?id=1050253), so make sure you are saving and loading where necessary.
