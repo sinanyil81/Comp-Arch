@@ -47,3 +47,13 @@ Find and identify the following components of this assembly file, and be able to
 3. The registers acting as pointers to the `source` and `dest` arrays.
 4. The assembly code for the loop found in the C code.
 5. How the pointers are manipulated in the assembly code.
+
+## Exercise 3: Factorial
+
+In this exercise, you will be implementing the `factorial` function in RISC-V. This function takes in a single integer parameter `n` and returns `n!`. A stub of this function can be found in the file `factorial.s`.
+
+The argument that is passed into the function is located at the label `n`. You can modify `n` to test different factorials. To implement, you will need to add instructions under the `factorial` label. Note that you may find it helpful to add additional labels to simplify control flow. We recommend that you implement the iterative solution, but you are welcome to implement the recursive solution. You can assume that the `factorial` function will only be called on positive values with results that won't overflow a 32-bit two's complement integer.
+
+### Action
+
+Complete the code at the comment line `# YOUR CODE HERE` and make sure that your function properly returns, for example, `3! = 6`, `7! = 5040`, and `8! = 40320`.
