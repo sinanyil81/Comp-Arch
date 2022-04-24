@@ -125,17 +125,17 @@ f(3) = 5
 Implement the function in `discrete_fn.s` in RISC-V, with the condition that your code may **NOT** use any branch and/or jump instructions! We have provided some hints in case you get stuck.
 
 Note that you can shorten `jal ra, label` to `jal label`. These two lines do the same thing.
-<details open>
+<details>
     <summary>Hint 1</summary>
     <br>
     All of the output values are stored in the output array which is passed to `f` through register `a1`. You can index into that array to get the output corresponding to the input.
 </details>
-<details open>
+<details>
     <summary>Hint 2</summary>
     <br>
     You can access the values of the array using `lw`.
 </details>
-<details open>
+<details>
     <summary>Hint 3</summary>
     `lw` requires that the offset is an immediate value. When we compute the offset for this problem, it will be stored in a register. Since we cannot use a register as the offset, we can add the value stored in the register to the base address to compute the address of the index that we are interested in. Then we can perform a `lw` with an offset of `0`.
 
