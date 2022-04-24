@@ -158,7 +158,7 @@ Calling convention errors can cause bugs in your code that are difficult to find
 
 You can start Venus calling convention checker by running the following command in the root folder:
 ```console
-java -jar tools/venus.jar -cc lab04/cc_test.s
+java -jar tools/venus.jar -cc ex6/cc_test.s
 ```
 The `-cc` flag enables the calling convention checker, and detects some basic violations.
 
@@ -274,7 +274,7 @@ Fix all of the mistakes inside the `map` function. Read all of the commented lin
 
 Save your corrected code in the `megalistmanips.s` file. **Use the `-cc` flag to run a basic calling convention check on your code locally:**
 ```console
-java -jar tools/venus.jar -cc lab04/megalistmanips.s
+java -jar tools/venus.jar -cc ex7/megalistmanips.s
 ```
 The CC checker should report 0 warnings.
 
