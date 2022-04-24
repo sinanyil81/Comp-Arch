@@ -187,7 +187,7 @@ Error:
 
 More information about these errors can be found in the [Venus reference](https://cs61c.org/sp22/resources/venus-reference/#working-with-multiple-files).
 
-**Note**: Venus's calling convention checker will not report all calling convention bugs; it is intended to be used primarily as a basic check. Most importantly, **it will only look for bugs in functions that are exported with the `.globl` directive**
+**Note**: Venus calling convention checker will not report all calling convention bugs; it is intended to be used primarily as a basic check. Most importantly, **it will only look for bugs in functions that are exported with the `.globl` directive**
 
 ### Action
 
@@ -233,3 +233,29 @@ void map(struct node *curr_node, int (*f)(int)) {
 }
 ```
 You can pass arguments into function pointers just like you do with normal functions. You can read more about function pointers [here](https://www.geeksforgeeks.org/function-pointer-in-c/)).
+
+### Action
+
+**For this exercise, we are requiring that you don't use any extra save registers in your implementation**. While you normally can use the save registers to store values that you want to use after returning from a function (in this case, when we're calling `f` in `map`), we want you to use temporary registers instead and follow their caller/callee conventions. **The provided `map` implementation only uses the `s0` and `s1` registers, so we'll require that you don't use `s2-s11`
+
+Note: The CC checker won't check if you are using registers besides `s0` and `s1`, but you need to implement this requirement in order to pass the autograder.
+
+Fix all of the mistakes inside the `map` function. Read all of the commented lines under the `map` function in `megalistmanips.s` and **make sure that the lines do what the comments say**. All bugs are within the `map` function, `mapLoop`, and `done` but it's worth understanding the full program. We have provided some hints in case you get stuck.
+
+<details>
+    <summary>If I have a register that contains the address of a node that is stored in memory, what instruction would I use to read elements from that node?</summary>
+    <br>
+    You would use the load word instruction. Load word is used to read values from the memory, so if I have a pointer to something that is located in memory, I need to use load word to read it.
+</details>
+<details>
+    <summary>What are the steps of executing a function?</summary>
+    <br>
+    <ol>
+    <li>If you will be calling another function, make sure that you save register <code>ra</code> on the stack. (When you call another function, you will end up overwritting register <code>ra</code> so that the function you are calling knows where to return to.</li>
+    <li>If you need to overwrite any callee-saved registers, make room for them on the stack and save them.</li>
+    <li>Perform the desired task.</li>
+    <li>Restore the registers that were saved and move the stack pointer back up.</li>
+    <li>Return</li>
+    </ol>
+</details>
+
