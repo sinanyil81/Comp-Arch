@@ -271,3 +271,26 @@ Fix all of the mistakes inside the `map` function. Read all of the commented lin
     </code>
     </pre>
 </details>
+
+Save your corrected code in the `megalistmanips.s` file. **Use the `-cc` flag to run a basic calling convention check on your code locally:**
+```console
+java -jar tools/venus.jar -cc lab04/megalistmanips.s
+```
+The CC checker should report 0 warnings.
+
+For reference, running `megalistmanips` should give the following output:
+```console
+Lists before:
+5 2 7 8 1
+1 6 3 8 4
+5 2 7 4 3
+1 2 3 4 7
+5 6 7 8 9
+
+Lists after:
+30 6 56 72 2
+2 42 12 72 20
+30 6 56 20 12
+2 6 12 20 56
+30 42 56 72 90
+```
