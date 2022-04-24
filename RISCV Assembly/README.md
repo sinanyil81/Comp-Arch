@@ -152,7 +152,7 @@ Note that you can shorten `jal ra, label` to `jal label`. These two lines do the
     
 </details>
 
-## Exercise 7: Calling Convention Checker
+## Exercise 6: Calling Convention Checker
 
 Calling convention errors can cause bugs in your code that are difficult to find. The calling convention checker is used to detect calling convention violations in your code. 
 
@@ -187,5 +187,26 @@ Error:
 
 More information about these errors can be found in the [Venus reference](https://cs61c.org/sp22/resources/venus-reference/#working-with-multiple-files).
 
-**Note**: Venus's calling convention checker will not report all calling convention bugs; it is intended to be used primarily as a basic check.
+**Note**: Venus's calling convention checker will not report all calling convention bugs; it is intended to be used primarily as a basic check. Most importantly, **it will only look for bugs in functions that are exported with the `.globl` directive**
+
+### Action
+
+1. Resolve all the calling convention errors in `cc_test.s`.
+The fixes for all of these errors (both the ones reported by the CC checker and the ones it can't find) should be added near the lines marked by the `FIXME` comments in the starter code.
+2. Once you have answered these, run Venus with the calling convention checker on `discrete_fn.s` from the last exercise as well. Make sure to fix any bugs you find.
+3. After you finish the exercise, be sure that you can answer the following questions.
+
+- Is `next_test` a function?
+- What caused the errors in `pow`, and `inc_arr` that were reported by the Venus CC checker?
+- In RISC-V, we call functions by jumping to them and storing the return address in the `ra` register. Does calling convention apply to the jumps to the `pow_loop` or `pow_end` labels?
+- Why do we need to store `ra` in the prologue for `inc_arr`, but not in any other function?
+- Why wasn't the calling convention error in `helper_fn` reported by the CC checker? (Hint: it's mentioned above in the exercise instructions.)
+
+After fixing the errors in `cc_test.s`, rerun the program to make sure the behavior of the functions hasn't changed and that you've remedied all calling convention violations.
+
+Once you have fixed everything, running the above Venus command should output the following:
+```console
+Sanity checks passed! Make sure there are no CC violations.
+Found 0 warnings!
+```
 
