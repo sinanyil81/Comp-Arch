@@ -141,10 +141,13 @@ Note that you can shorten `jal ra, label` to `jal label`. These two lines do the
     <code>lw</code> requires that the offset is an immediate value. When we compute the offset for this problem, it will be stored in a register. Since we cannot use a register as the offset, we can add the value stored in the register to the base address to compute the address of the index that we are interested in. Then we can perform a <code>lw</code> with an offset of <code>0</code>.
     <br>
     In the following example, the index is stored in <code>t0</code> and the pointer to the array is stored in <code>t1</code>. The size of each element is 4 bytes. In RISC-V, we have to do our own pointer arithmetic, so (1) we need to multiply the index by the size of the elements of the array. (2) Then we add this offset to the address of the array to get the address of the element that we wish to read and then (3) read the element.
+    <br>
+    <pre>
     <code>
     slli t2, t0, 2 # step 1 (see above)
     add t2, t2, t1  # step 2 (see above)
     lw t3, 0(t2) # step 3 (see above)
     </code>
+    </pre>
     
 </details>
