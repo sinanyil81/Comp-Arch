@@ -210,3 +210,26 @@ Sanity checks passed! Make sure there are no CC violations.
 Found 0 warnings!
 ```
 
+## Exercise 7: Debugging `megalistmanips.s`
+
+In Exercise 4, you completed a RISC-V procedure that applied a function to every element of a linked list. In this lab, you will be working with a similar (but slightly more complex) version of that procedure.
+
+Now, instead of having a linked list of `int`'s, our data structure is a linked list of `int` arrays. Remember that when dealing with arrays within `struct`'s, we need to explicitly store the size of the array. In C code, here's what the data structure looks like:
+```c
+struct node {
+    int *arr;
+    int size;
+    struct node *next;
+};
+```
+Also, here's what the new `map` function does: it traverses the linked list and for each element in each array of each `node`, it applies the passed-in function to it, and stores it back into the array.
+```c
+void map(struct node *curr_node, int (*f)(int)) {
+    if (!curr_node) { return; }
+    for (int i = 0; i < curr_node->size; i++) {
+      curr_node->arr[i] = f(curr_node->arr[i]);
+    }
+    map(curr_node->next, f);
+}
+```
+You can pass arguments into function pointers just like you do with normal functions. You can read more about function pointers [here](https://www.geeksforgeeks.org/function-pointer-in-c/)).
