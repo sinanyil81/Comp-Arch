@@ -151,3 +151,41 @@ Note that you can shorten `jal ra, label` to `jal label`. These two lines do the
     </pre>
     
 </details>
+
+## Exercise 7: Calling Convention Checker
+
+Calling convention errors can cause bugs in your code that are difficult to find. The calling convention checker is used to detect calling convention violations in your code. 
+
+You can start Venus calling convention checker by running the following command in the root folder:
+```console
+java -jar tools/venus.jar -cc lab04/cc_test.s
+```
+The `-cc` flag enables the calling convention checker, and detects some basic violations.
+
+In the terminal, you should see something simlar to the following.
+
+```console
+[CC Violation]: (PC=0x0000004C) Setting of a saved register (s0) which has not been saved! cc_test.s:56 li s0, 1
+[CC Violation]: (PC=0x00000054) Setting of a saved register (s0) which has not been saved! cc_test.s:59 mul s0, s0, a0
+[CC Violation]: (PC=0x00000054) Setting of a saved register (s0) which has not been saved! cc_test.s:59 mul s0, s0, a0
+[CC Violation]: (PC=0x00000054) Setting of a saved register (s0) which has not been saved! cc_test.s:59 mul s0, s0, a0
+[CC Violation]: (PC=0x00000054) Setting of a saved register (s0) which has not been saved! cc_test.s:59 mul s0, s0, a0
+[CC Violation]: (PC=0x00000054) Setting of a saved register (s0) which has not been saved! cc_test.s:59 mul s0, s0, a0
+[CC Violation]: (PC=0x00000054) Setting of a saved register (s0) which has not been saved! cc_test.s:59 mul s0, s0, a0
+[CC Violation]: (PC=0x00000054) Setting of a saved register (s0) which has not been saved! cc_test.s:59 mul s0, s0, a0
+[CC Violation]: (PC=0x00000064) Save register s0 not correctly restored before return! Expected 0x00000000, Actual 0x00000080. cc_test.s:66 ret
+[CC Violation]: (PC=0x00000070) Setting of a saved register (s0) which has not been saved! cc_test.s:80 mv s0, a0 # Copy start of array to saved register
+[CC Violation]: (PC=0x00000074) Setting of a saved register (s1) which has not been saved! cc_test.s:81 mv s1, a1 # Copy length of array to saved register
+[CC Violation]: (PC=0x000000A4) Setting of a saved register (s0) which has not been saved! cc_test.s:115 addi s0, t1, 1
+Found 12 warnings!
+--------------------
+[ERROR] An error has occurred!
+
+Error:
+`SimulatorError: Attempting to access uninitialized memory between the stack and heap. Attempting to access '4' bytes at address '0x63080013'.
+```
+
+More information about these errors can be found in the [Venus reference](https://cs61c.org/sp22/resources/venus-reference/#working-with-multiple-files).
+
+**Note**: Venus's calling convention checker will not report all calling convention bugs; it is intended to be used primarily as a basic check.
+
