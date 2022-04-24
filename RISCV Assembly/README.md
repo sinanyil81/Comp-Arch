@@ -128,19 +128,20 @@ Note that you can shorten `jal ra, label` to `jal label`. These two lines do the
 <details>
     <summary>Hint 1</summary>
     <br>
-    All of the output values are stored in the output array which is passed to <code>f</code> through register `a1`. You can index into that array to get the output corresponding to the input.
+    All of the output values are stored in the output array which is passed to <code>f</code> through register <code>a1</code>. You can index into that array to get the output corresponding to the input.
 </details>
 <details>
     <summary>Hint 2</summary>
     <br>
-    You can access the values of the array using `lw`.
+    You can access the values of the array using <code>lw</code>.
 </details>
 <details>
     <summary>Hint 3</summary>
-    `lw` requires that the offset is an immediate value. When we compute the offset for this problem, it will be stored in a register. Since we cannot use a register as the offset, we can add the value stored in the register to the base address to compute the address of the index that we are interested in. Then we can perform a `lw` with an offset of `0`.
-    In the following example, the index is stored in t0 and the pointer to the array is stored in t1. The size of each element is 4 bytes. In RISC-V, we have to do our own pointer arithmetic, so (1) we need to multiply the index by the size of the elements of the array. (2) Then we add this offset to the address of the array to get the address of the element that we wish to read and then (3) read the element.
+    <br>
+    <code>lw</code> requires that the offset is an immediate value. When we compute the offset for this problem, it will be stored in a register. Since we cannot use a register as the offset, we can add the value stored in the register to the base address to compute the address of the index that we are interested in. Then we can perform a <code>lw</code> with an offset of <code>0</code>.
+    In the following example, the index is stored in <code>t0</code> and the pointer to the array is stored in <code>t1</code>. The size of each element is 4 bytes. In RISC-V, we have to do our own pointer arithmetic, so (1) we need to multiply the index by the size of the elements of the array. (2) Then we add this offset to the address of the array to get the address of the element that we wish to read and then (3) read the element.
     
-    ```asm
+    ```
     slli t2, t0, 2 # step 1 (see above)
     add t2, t2, t1  # step 2 (see above)
     lw t3, 0(t2) # step 3 (see above)
