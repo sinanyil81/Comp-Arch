@@ -105,3 +105,28 @@ Complete the implementation of `map` by filling out each of these ten markers wi
 The first line is the original list, and the second line is the list with all elements squared after calling `map(head, &square)`, and the third is the list with all elements decremented after now calling `map(head, &decrement)`.
 
 Do not forger to check that your code satisfies the [RISC-V Calling Converntion](https://didatticaonline.unitn.it/dol/mod/resource/view.php?id=1050253), so make sure you are saving and loading where necessary.
+
+## Exercise 5: Array Practice
+
+Consider the discrete-valued function f defined on integers in the set {-3, -2, -1, 0, 1, 2, 3}. Here's the function definition:
+
+```
+f(-3) = 6
+f(-2) = 61
+f(-1) = 17
+f(0) = -38
+f(1) = 19
+f(2) = 42
+f(3) = 5
+```
+
+### Action
+
+Implement the function in `discrete_fn.s` in RISC-V, with the condition that your code may **NOT** use any branch and/or jump instructions! We have provided some hints in case you get stuck.
+
+Note that you can shorten `jal ra, label` to `jal label`. These two lines do the same thing.
+<details open>
+<summary>Want to ruin the surprise?</summary>
+<br>
+Well, you asked for it!
+</details>
