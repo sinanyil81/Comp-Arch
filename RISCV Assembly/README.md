@@ -258,4 +258,16 @@ Fix all of the mistakes inside the `map` function. Read all of the commented lin
     <li>Return</li>
     </ol>
 </details>
-
+<details>
+    <summary>How do we read an element from an array given a pointer to the beginning of an <code>int</code> array (<code>a0</code>) and the index of the element that we want to read (<code>a1</code>)? Assume <code>sizeof(int) = 4</code>.</summary>
+    <br>
+    In the following example, the index is stored in <code>t0</code> and the pointer to the array is stored in <code>t1</code>. The size of each element is 4 bytes. In RISC-V, we have to do our own pointer arithmetic, so (1) we need to multiply the index by the size of the elements of the array. (2) Then we add this offset to the address of the array to get the address of the element that we wish to read and then (3) read the element.
+    <br>
+    <pre>
+    <code>
+    slli t2, t0, 2 # step 1 (see above)
+    add t2, t2, t1  # step 2 (see above)
+    lw t3, 0(t2) # step 3 (see above)
+    </code>
+    </pre>
+</details>
