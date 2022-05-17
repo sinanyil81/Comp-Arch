@@ -22,9 +22,13 @@ After a short startup sequence, a Logisim window should appear. If not, check fo
 1. ![alt text](img/icon-and.png)  Start by clicking the `AND` gate button. This will cause the shadow of an `AND` gate to follow your cursor around. Click once within the main schematic window to place an `AND` gate.
 2. ![alt text](img/icon-pin-input.png) Click the `Input Pin` button. Now, place two input pins somewhere to the left of your `AND` gate.
 3. ![alt text](img/icon-pin-output.png) Click the `Output Pin` button. Then place an output pin somewhere to the right of your `AND` gate. Your schematic should look something like this at this point:
+
 ![alt text](img/circuit-and-disconnected.png)
+
 4. ![alt text](img/icon-select.png) Click the `Select` tool button. Click and drag to connect the 2 input pins to the 2 inputs on the left side of the `AND` gate. You can only draw vertical and horizontal wires. Just draw a wire horizontally, release the mouse button, then click and drag starting from the end of the wire to continue vertically. Repeat the same procedure to connect the output on the right side of the `AND` gate to the output pin. After completing these steps your schematic should look similar to this:
+
 ![alt text](img/circuit-and-connected.png)
+
 5. ![alt text](img/icon-poke.png) Finally, the `Poke` tool will toggle the values of the pins when you click on them. If you use the `Poke` tool on a wire, it will display the value on the wire. Select the `Poke` tool, try clicking on the input pins in your schematic, and observe what happens. Does the output match with what you think an `AND` gate should do? Now, try poking a wire directly. The current value on that wire should pop up; this is very useful for more complex circuits.
 6. Now, delete the wires, and try wiring each input pin to the other pin on the `AND` gate, in such a way that the wires cross over. An extreme example:
 ![alt text](img/circuit-and-crossover.png)
