@@ -8,6 +8,8 @@
 
 This excercire series introduces [Logisim](http://www.cburch.com/logisim/) - an educational tool for designing and simulating digital logic circuits.
 
+**The exercises are based on the ["Great Ideas in Computer Architecture (Machine Structures)"](https://cs61c.org/sp22/) course labs at UC Berkeley.**
+
 ## Exercise 1: Get familiar with Logisim
 
 You can run Logisim from inside the `Digital Logic` folder with
